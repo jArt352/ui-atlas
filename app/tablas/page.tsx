@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { AgGridDemo } from "@/components/demos/aggrid-demo";
 import { ShadcnTable } from "@/components/demos/shadcn-table";
 import { TanstackTable } from "@/components/demos/tanstack-table";
+import { REFS } from "@/lib/refs";
 
 export default function TablasPage() {
   return (
@@ -17,9 +18,11 @@ export default function TablasPage() {
         title="1 · Tabla estática (shadcn/ui)"
         description="Solo HTML con estilo. Ideal para listas cortas y resúmenes."
         lib="shadcn"
+        refs={REFS.shadcnTable}
         install="npx shadcn@latest add table badge"
         file="components/demos/shadcn-table.tsx"
         steps={[
+          "Abre la página Table en ui.shadcn.com/docs/components/table.",
           "Instala table con la CLI de shadcn.",
           "Usa Table, TableHeader, TableBody, TableRow, TableHead y TableCell.",
           "Combina con Badge para estados.",
@@ -33,10 +36,11 @@ export default function TablasPage() {
         title="2 · Tabla con lógica (TanStack Table)"
         description="Haz clic en los encabezados para ordenar, escribe para filtrar y navega por páginas."
         lib="tanstack"
+        refs={REFS.tanstackTable}
         file="components/demos/tanstack-table.tsx"
         steps={[
-          "Instala @tanstack/react-table (versión 9).",
-          "Registra las funciones con tableFeatures: rowSortingFeature, globalFilteringFeature, rowPaginationFeature y sus row models.",
+          "Instala @tanstack/react-table (versión 9) y lee el Quick Start de React.",
+          "Registra las funciones con tableFeatures: rowSortingFeature, globalFilteringFeature, rowPaginationFeature y sus row models (guías Sorting, Global Filtering y Pagination).",
           "Define columnas con createColumnHelper y arma la tabla con useTable.",
           "Dibuja el HTML con las piezas de shadcn: la librería no trae estilos.",
           "Si usas un agente, TanStack incluye guías para agentes dentro del paquete (carpeta skills).",
@@ -49,12 +53,14 @@ export default function TablasPage() {
         title="3 · Cuadrícula completa (AG Grid)"
         description="Orden, filtros por columna, paginación y redimensionado ya incluidos."
         lib="aggrid"
+        refs={REFS.aggrid}
         file="components/demos/aggrid-inner.tsx y aggrid-demo.tsx"
         steps={[
           "Instala ag-grid-community y ag-grid-react.",
-          "Registra los módulos: ModuleRegistry.registerModules([AllCommunityModule]).",
+          "Registra los módulos (página AG Grid Modules). Este proyecto usa ModuleRegistry.registerModules([AllCommunityModule]); la página actual muestra también AgGridProvider.",
           "Dale a la cuadrícula un contenedor con altura y pásale rowData y columnDefs.",
-          "Cambia el tema con themeQuartz.withPart(colorSchemeDark) para el modo oscuro.",
+          "Activa pagination y paginationPageSize (página Row Pagination).",
+          "Para el modo oscuro usa themeQuartz.withPart(colorSchemeDark) (página Theming: Colours & Dark Mode).",
           "Cárgala con next/dynamic y ssr: false.",
         ]}
       >

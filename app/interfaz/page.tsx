@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/atlas/app-shell";
 import { Showcase } from "@/components/atlas/showcase";
 import { MagicBento, MagicMarquee } from "@/components/demos/magicui-demo";
 import { AccordionDemo, CalendarDemo, CommandDemo, DrawerDemo, ToastDemo } from "@/components/demos/ui-misc";
+import { REFS } from "@/lib/refs";
 
 export default function InterfazPage() {
   return (
@@ -15,9 +16,11 @@ export default function InterfazPage() {
         title="Bento: maquetar con una cuadrícula"
         description="Tarjetas de distinto tamaño sobre una grilla de 3 columnas."
         lib="magicui"
+        refs={REFS.magicBento}
         install="npx shadcn@latest add https://magicui.design/r/bento-grid.json"
         file="components/demos/magicui-demo.tsx → MagicBento"
         steps={[
+          "Abre la página Bento Grid en magicui.design/docs/components/bento-grid.",
           "Instala bento-grid desde el registro de Magic UI.",
           "BentoGrid define la grilla; cada BentoCard recibe un className con col-span para ocupar más o menos columnas.",
           "En móvil todo se apila en una columna; en md pasa a tres.",
@@ -31,9 +34,11 @@ export default function InterfazPage() {
         title="Marquesina"
         description="Banda que se desplaza sola; se detiene al pasar el cursor."
         lib="magicui"
+        refs={REFS.magicMarquee}
         install="npx shadcn@latest add https://magicui.design/r/marquee.json"
         file="components/demos/magicui-demo.tsx → MagicMarquee"
         steps={[
+          "Abre la página Marquee en magicui.design/docs/components/marquee.",
           "Instala marquee desde el registro de Magic UI.",
           "La velocidad se cambia con la variable CSS --duration.",
           "pauseOnHover la detiene al pasar el cursor.",
@@ -47,12 +52,14 @@ export default function InterfazPage() {
           title="Calendario"
           description="Elige una fecha: se muestra un aviso."
           lib="daypicker"
+          refs={REFS.shadcnCalendar}
           install="npx shadcn@latest add calendar"
           file="components/demos/ui-misc.tsx → CalendarDemo"
           steps={[
+            "Abre la página Calendar en ui.shadcn.com/docs/components/calendar.",
             "Instala calendar con la CLI de shadcn (trae react-day-picker y date-fns).",
-            "Usa mode=\"single\" con selected y onSelect.",
-            "Para español importa el idioma: import { es } from \"react-day-picker/locale\".",
+            "Usa mode=\"single\" con selected y onSelect (página Selection modes de React Day Picker).",
+            "Para español importa el idioma: import { es } from \"react-day-picker/locale\" (página Localization).",
           ]}
         >
           <CalendarDemo />
@@ -63,9 +70,11 @@ export default function InterfazPage() {
             title="Avisos con Sonner"
             description="Pulsa cada botón."
             lib="sonner"
+            refs={REFS.shadcnSonner}
             install="npx shadcn@latest add sonner"
             file="components/demos/ui-misc.tsx → ToastDemo"
             steps={[
+              "Abre la página Sonner en ui.shadcn.com/docs/components/sonner.",
               "Instala sonner con la CLI de shadcn.",
               "Pon <Toaster /> una sola vez en app/layout.tsx.",
               "Llama a toast.success, toast.error, toast.promise o toast con una acción desde cualquier lugar.",
@@ -78,9 +87,11 @@ export default function InterfazPage() {
             title="Panel inferior (Drawer)"
             description="Detalle de un registro sin cambiar de página."
             lib="baseui"
+            refs={REFS.shadcnDrawer}
             install="npx shadcn@latest add drawer"
             file="components/demos/ui-misc.tsx → DrawerDemo"
             steps={[
+              "Abre la página Drawer en ui.shadcn.com/docs/components/drawer.",
               "Instala drawer con la CLI de shadcn.",
               "Con este estilo de shadcn el botón disparador se pasa con la propiedad render, no con asChild.",
               "DrawerClose cierra el panel; úsalo para el botón Cancelar.",
@@ -94,9 +105,11 @@ export default function InterfazPage() {
           title="Menú de comandos"
           description="Escribe para filtrar; se usa igual en un diálogo con Ctrl+K."
           lib="cmdk"
+          refs={REFS.shadcnCommand}
           install="npx shadcn@latest add command"
           file="components/demos/ui-misc.tsx → CommandDemo"
           steps={[
+            "Abre la página Command en ui.shadcn.com/docs/components/command.",
             "Instala command con la CLI de shadcn (trae cmdk).",
             "Command, CommandInput, CommandList, CommandGroup y CommandItem forman el menú.",
             "Para abrirlo como diálogo usa CommandDialog y envuelve el contenido en <Command>.",
@@ -109,9 +122,11 @@ export default function InterfazPage() {
           title="Preguntas frecuentes (Accordion)"
           description="Respuestas plegables para guiar la elección."
           lib="baseui"
+          refs={REFS.shadcnAccordion}
           install="npx shadcn@latest add accordion"
           file="components/demos/ui-misc.tsx → AccordionDemo"
           steps={[
+            "Abre la página Accordion en ui.shadcn.com/docs/components/accordion.",
             "Instala accordion con la CLI de shadcn.",
             "Cada AccordionItem lleva un value único.",
             "defaultValue recibe una lista con los items abiertos al inicio.",

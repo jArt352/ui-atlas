@@ -30,7 +30,7 @@ export const LIBS = {
   },
   recharts: {
     name: "Recharts",
-    url: "https://recharts.org",
+    url: "https://recharts.github.io",
     license: "MIT",
     kind: "npm",
     install: "npm install recharts",

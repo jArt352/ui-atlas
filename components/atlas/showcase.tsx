@@ -9,11 +9,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { cn } from "@/lib/utils";
 import { KIND_LABEL, LIBS, type LibId } from "@/lib/sources";
 
+export type Ref = {
+  /** Nombre exacto del ejemplo o de la página, tal como aparece en el sitio */
+  label: string;
+  /** Dirección exacta de esa página */
+  url: string;
+  /** Aclaración corta (por ejemplo, el nombre interno del ejemplo) */
+  note?: string;
+};
+
 type Props = {
   title: string;
   description?: string;
   /** Clave de la librería en lib/sources.ts */
   lib: LibId;
+  /** Dónde encontrar exactamente esta pieza en el sitio de origen */
+  refs?: Ref[];
   /** Archivo de este proyecto donde está la implementación */
   file: string;
   /** Pasos para llevar esta pieza a tu proyecto */
@@ -51,7 +62,7 @@ function CopyLine({ text }: { text: string }) {
   );
 }
 
-export function Showcase({ title, description, lib, file, steps, install, className, bodyClassName, children }: Props) {
+export function Showcase({ title, description, lib, refs, file, steps, install, className, bodyClassName, children }: Props) {
   const [open, setOpen] = useState(false);
   const meta = LIBS[lib];
 
@@ -94,6 +105,27 @@ export function Showcase({ title, description, lib, file, steps, install, classN
                     {meta.url.replace("https://", "")}
                   </a>
                 </p>
+                {refs && refs.length > 0 && (
+                  <div className="mt-2 rounded-lg border bg-muted/40 p-3">
+                    <p className="mb-1.5 text-xs font-medium">Dónde encontrarlo exactamente</p>
+                    <ul className="space-y-1.5">
+                      {refs.map((r) => (
+                        <li key={r.url} className="text-xs">
+                          <a
+                            href={r.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 font-medium text-primary underline-offset-2 hover:underline"
+                          >
+                            {r.label}
+                            <ExternalLink className="size-3" />
+                          </a>
+                          {r.note && <span className="text-muted-foreground"> · {r.note}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </section>
 
               <section className="space-y-1.5">

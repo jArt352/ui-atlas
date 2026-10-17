@@ -1,6 +1,6 @@
 "use client";
 
-// Origen: Recharts usado directamente (https://recharts.org/en-US/examples). Instalado con: npm install recharts
+// Origen: Recharts usado directamente (https://recharts.github.io/en-US/examples). Instalado con: npm install recharts
 // Aquí no pasa por shadcn: tú controlas cada eje, leyenda y tooltip.
 
 import { Bar, CartesianGrid, ComposedChart, Legend, Line, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
