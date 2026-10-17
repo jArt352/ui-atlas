@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ChartPie, ChartSpline, Compass, LayoutDashboard, Menu, Table2, Blocks, Layers } from "lucide-react";
+import { ChartPie, ChartSpline, Compass, LayoutDashboard, Menu, Table2, Blocks, Layers, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { CartBar } from "@/components/atlas/cart-bar";
 import { ThemeToggle } from "@/components/atlas/theme-toggle";
+import { useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -16,6 +18,7 @@ const NAV = [
   { href: "/tablas", label: "Tablas", icon: Table2 },
   { href: "/interfaz", label: "Interfaz y feedback", icon: Blocks },
   { href: "/fuentes", label: "Dónde buscar", icon: Compass },
+  { href: "/carrito", label: "Mi dashboard", icon: ShoppingCart },
 ];
 
 function Brand() {
@@ -31,6 +34,7 @@ function Brand() {
 
 function Nav({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
+  const count = useCart().length;
   return (
     <nav className="flex flex-col gap-1 px-3 py-2" aria-label="Principal">
       {NAV.map(({ href, label, icon: Icon }) => {
@@ -48,6 +52,11 @@ function Nav({ onNavigate }: { onNavigate?: () => void }) {
           >
             <Icon className="size-4" />
             {label}
+            {href === "/carrito" && count > 0 && (
+              <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-semibold text-primary-foreground">
+                {count}
+              </span>
+            )}
           </Link>
         );
       })}
@@ -63,7 +72,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <Brand />
         <Nav />
         <p className="mt-auto border-t p-4 text-xs text-muted-foreground">
-          Cada tarjeta indica de qué librería viene y cómo se implementa.
+          Cada tarjeta indica de qué librería viene y cómo se implementa. Pulsa “Elegir” para armar tu dashboard.
         </p>
       </aside>
 
@@ -87,8 +96,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <ThemeToggle />
           </div>
         </header>
-        <main className="mx-auto max-w-7xl space-y-6 p-4 md:p-8">{children}</main>
+        <main className="mx-auto max-w-7xl space-y-6 p-4 pb-28 md:p-8 md:pb-28">{children}</main>
       </div>
+      <CartBar />
     </div>
   );
 }

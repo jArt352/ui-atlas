@@ -23,6 +23,19 @@ Abre http://localhost:3000.
 | `/tablas` | Tabla estática, tabla con lógica y cuadrícula completa. |
 | `/interfaz` | Bento, marquesina, calendario, avisos, panel inferior, menú de comandos y acordeón. |
 | `/fuentes` | Dónde buscar, método de cuatro pasos y lista de evaluación de librerías. |
+| `/carrito` | Mi dashboard: las piezas que elegiste, con su prompt, documentación y comandos. |
+
+## Elegir piezas y armar tu dashboard
+
+Cada tarjeta tiene un botón **Elegir**. Las piezas elegidas quedan guardadas en tu navegador y se ven en **Mi dashboard** (`/carrito`), con un mínimo de 5. Con ellas se generan tres cosas:
+
+| Qué | Para qué sirve |
+|---|---|
+| **Prompt para el agente** | Lo pegas en tu agente (Copilot, OpenCode, Antigravity u otro) dentro de un proyecto nuevo, para crear el dashboard aparte. Se basta solo: trae las tecnologías, cada componente con su librería, el ejemplo exacto, la instalación y cómo se implementa, más el diseño, las restricciones y los criterios de aceptación. |
+| **Documentación (`COMPONENTES.md`)** | La tabla de fuentes y el detalle de cada pieza: origen, licencia, instalación, enlace exacto y pasos. Se descarga y se entrega junto al dashboard como README. |
+| **Comandos** | Crear el proyecto y traer todas las piezas elegidas, con los comandos repetidos unidos. |
+
+El código está en `lib/cart.ts` (estado), `lib/cart-export.ts` (generación de los textos) y `components/atlas/cart-view.tsx` (página).
 
 ## Librerías usadas
 

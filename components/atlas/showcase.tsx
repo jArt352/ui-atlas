@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ChevronDown, Copy, ExternalLink } from "lucide-react";
+import { Check, ChevronDown, Copy, ExternalLink, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { cartCount, toggleItem, useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { KIND_LABEL, LIBS, type LibId } from "@/lib/sources";
 
@@ -65,10 +66,44 @@ function CopyLine({ text }: { text: string }) {
 export function Showcase({ title, description, lib, refs, file, steps, install, className, bodyClassName, children }: Props) {
   const [open, setOpen] = useState(false);
   const meta = LIBS[lib];
+  const cart = useCart();
+  const inCart = cart.some((i) => i.key === file);
+
+  function handleToggle() {
+    const added = toggleItem({
+      key: file,
+      title,
+      description,
+      libName: meta.name,
+      libUrl: meta.url,
+      license: meta.license,
+      kind: KIND_LABEL[meta.kind],
+      install: install ?? meta.install,
+      file,
+      steps,
+      refs: refs ?? [],
+    });
+    const n = cartCount();
+    toast(added ? `Agregada a tu dashboard: ${title}` : `Quitada de tu dashboard: ${title}`, {
+      description: `Llevas ${n} ${n === 1 ? "pieza" : "piezas"}.`,
+    });
+  }
 
   return (
     <Card className={cn("min-w-0", className)}>
       <CardHeader>
+        <CardAction>
+          <Button
+            size="sm"
+            variant={inCart ? "default" : "outline"}
+            aria-pressed={inCart}
+            aria-label={`${inCart ? "Quitar" : "Agregar"} ${title} ${inCart ? "de" : "a"} mi dashboard`}
+            onClick={handleToggle}
+          >
+            {inCart ? <Check /> : <Plus />}
+            {inCart ? "Elegida" : "Elegir"}
+          </Button>
+        </CardAction>
         <CardTitle>{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
         <div className="flex flex-wrap items-center gap-1.5 pt-1">

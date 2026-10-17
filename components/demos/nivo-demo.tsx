@@ -10,6 +10,11 @@ import { useMemo } from "react";
 import { useChartTheme } from "@/components/atlas/use-chart-theme";
 import { activityCalendar, sankey } from "@/lib/data";
 
+// Fechas locales (no texto): con "2026-01-01" Nivo lo toma como UTC y, en zonas horarias
+// al oeste de Greenwich, el calendario empezaba el 31 de diciembre de 2025 y dibujaba un año de más.
+const FROM = new Date(2026, 0, 1);
+const TO = new Date(2026, 9, 17);
+
 export function NivoCalendar() {
   const t = useChartTheme();
   const data = useMemo(() => activityCalendar(), []);
@@ -17,8 +22,8 @@ export function NivoCalendar() {
     <div className="h-48 w-full">
       <ResponsiveCalendar
         data={data}
-        from="2026-01-01"
-        to="2026-10-17"
+        from={FROM}
+        to={TO}
         emptyColor={t.empty}
         colors={["#c7d2fe", "#a5b4fc", "#818cf8", "#6366f1", "#4338ca"]}
         margin={{ top: 20, right: 10, bottom: 0, left: 24 }}
