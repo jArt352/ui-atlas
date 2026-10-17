@@ -54,7 +54,8 @@ export default function Home() {
           install="npx shadcn@latest add chart"
           file="components/demos/shadcn-charts.tsx → ShadcnDonut"
           steps={[
-            "Elige el gráfico “Pie chart - Donut with text” en ui.shadcn.com/charts.",
+            "Entra a ui.shadcn.com/charts/pie. Los 11 ejemplos se llaman solo “Pie Chart”: busca el anillo con un número en el centro y pulsa Copy o View Code.",
+            "Instala la base con la CLI: npx shadcn@latest add chart.",
             "Cada dato lleva fill: var(--color-<clave>) para tomar el color del ChartConfig.",
             "innerRadius convierte el pastel en donut.",
             "El texto central sale de un <Label content={...}> dentro de <Pie>.",

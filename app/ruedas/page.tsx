@@ -23,6 +23,8 @@ export default function RuedasPage() {
           install="npx shadcn@latest add chart"
           file="components/demos/shadcn-charts.tsx → ShadcnDonut"
           steps={[
+            "Entra a ui.shadcn.com/charts/pie. Los 11 ejemplos se llaman solo “Pie Chart”: busca el anillo con un número en el centro y pulsa Copy o View Code.",
+            "Instala la base con la CLI: npx shadcn@latest add chart.",
             "Usa PieChart con Pie y innerRadius.",
             "Los colores salen del ChartConfig (var(--chart-N)).",
             "El total del centro es un Label con content personalizado.",
